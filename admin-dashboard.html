@@ -229,7 +229,7 @@
             <!-- Events Section -->
             <div id="eventSection" class="content-section">
                 <h1>Event Management</h1>
-                <button class="btn btn-primary mb-3" onclick="openEventModal()">+ Add Event</button>
+                 <!--<button class="btn btn-primary mb-3" onclick="openEventModal()">+ Add Event</button> -->
                 <div class="table-responsive">
                     <table class="table table-striped" id="eventsTable">
                         <thead class="table-dark">
@@ -277,7 +277,7 @@
             <!-- Payment Records Section -->
             <div id="paymentSection" class="content-section">
                 <h1>Payment Records Management</h1>
-                <button class="btn btn-primary mb-3" onclick="openPaymentModal()">+ Add Payment Record</button>
+                <!--<button class="btn btn-primary mb-3" onclick="openPaymentModal()">+ Add Payment Record</button> -->
                 <div class="table-responsive">
                     <table class="table table-striped" id="paymentsTable">
                         <thead class="table-dark">
@@ -539,7 +539,7 @@
             <form id="packageForm">
                 <input type="hidden" id="packageId">
                 <div class="mb-3">
-                    <label for="packageName" class="form-label">Package Name</label>
+                   <!----> <label for="packageName" class="form-label">Package Name</label>
                     <input type="text" class="form-control" id="packageName" required>
                 </div>
                   <div class="mb-3">
@@ -564,6 +564,33 @@
         </div>
 
     <script>
+        function validateNIC(nic) {
+       
+           nic = nic.replace(/[\s-]/g, '');
+           const oldNICPattern = /^[0-9]{9}[VvXx]$/;
+           const newNICPattern = /^[0-9]{12}$/;
+         return oldNICPattern.test(nic) || newNICPattern.test(nic);
+        }    
+        document.getElementById("pnic").addEventListener("input", function(e) {
+            const isValid = validateNIC(this.value.trim());
+            this.style.borderColor = isValid ? '#ccc' : '#ff4444';
+    
+            // Show/hide error message
+           let errorMsg = this.parentElement.querySelector('.nic-error');
+           if (!isValid && this.value.trim() !== '') {
+              if (!errorMsg) {
+                 errorMsg = document.createElement('div');
+                  errorMsg.className = 'nic-error text-danger';
+                 errorMsg.style.fontSize = '12px';
+                  errorMsg.style.marginTop = '-15px';
+                  this.parentElement.insertBefore(errorMsg, this.nextSibling);
+                 }
+             errorMsg.textContent = 'Please enter a valid NIC number (old: 123456789V or new: 123456789012)';
+          } else if (errorMsg) {
+             errorMsg.remove();
+         }
+       });
+
         // API URLs
         const USER_API_URL = "http://localhost:9000/api/users";
         const PHOTOGRAPHER_API_URL = "http://localhost:9000/api/photographers";
@@ -827,6 +854,15 @@
         document.getElementById("photographerForm").addEventListener("submit", async (e) => {
             e.preventDefault();
             hideAlerts();
+
+            
+            const nicInput = document.getElementById("pnic").value.trim();
+    
+            // NIC Validation
+          if (!validateNIC(nicInput)) {
+              showAlert('Please enter a valid NIC number (old format: 123456789V or new format: 123456789012)', 'error');
+              return;
+            }
             
             const data = {
                 firstName: document.getElementById("pfirstName").value,
@@ -1378,6 +1414,7 @@
                 });
             }
         });
+        
 
         // ---------------- Logout ----------------
         function logout() {

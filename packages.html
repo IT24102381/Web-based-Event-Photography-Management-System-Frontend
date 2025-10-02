@@ -43,9 +43,32 @@
     .package-card{
       background-color: rgba(104, 102, 102, 0.9);
     }
+        /* Add these new styles */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            padding: 10px 20px;
+            background-color: rgba(132, 130, 130, 0.9);
+            border: none;
+            border-radius: 25px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background-color: rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
   </style>
 </head>
 <body>
+    <button class="back-button btn btn-light" onclick="window.location.href='Main.html'">
+        ← Back to Home
+    </button>
   <div class="container py-5">
     <h1 class="text-center text-header mb-4">Our Event Packages</h1>
     <div id="packagesRow" class="row g-4">
@@ -72,8 +95,9 @@
               <div class="card-body text-center">
                 <h5 class="card-title">${pack.name}</h5>
                 <h6 class="text-primary">$${pack.price}</h6>
-                <p class="card-text">${pack.hours} • ${pack.type}</p>
-                <p class="text-muted">${pack.description}</p>
+                <p class="card-text">• ${pack.hours} Hours</p>
+                <p class="card-text">• ${pack.type}</p>
+                <p class="text-muted">• ${pack.description}</p>
                 <button class="btn btn-primary" onclick="window.location.href='login.html'">Book Now</button>
               </div>
             </div>

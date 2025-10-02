@@ -243,27 +243,6 @@
       font-size: 15px;
       margin-top: 8px;
     }
-    
-    .error-message {
-      color: #e53e3e;
-      font-size: 12px;
-      margin-top: -12px;
-      margin-bottom: 12px;
-      display: none;
-    }
-    
-    .error-message.show {
-      display: block;
-    }
-    
-    form input.error, form select.error, form textarea.error {
-      border-color: #fc8181;
-      background: #fff5f5;
-    }
-    
-    form input.success, form select.success, form textarea.success {
-      border-color: #48bb78;
-    }
   </style>
 </head>
 <body>
@@ -291,23 +270,16 @@
         <input type="text" id="ename" placeholder="Your Name" readonly>
         <input type="email" id="eemail" placeholder="Your Email" readonly>
         <input type="text" id="ephone" placeholder="Phone Number" required>
-        <span class="error-message" id="ephone-error"></span>
         <input type="text" id="etype" placeholder="Event Type (e.g., Wedding, Birthday)" required>
-        <span class="error-message" id="etype-error"></span>
         <input type="date" id="edate" required>
-        <span class="error-message" id="edate-error"></span>
         <input type="time" id="etime" required>
-        <span class="error-message" id="etime-error"></span>
         <input type="text" id="elocation" placeholder="Event Location" required>
-        <span class="error-message" id="elocation-error"></span>
         <select id="ephotographer" required>
           <option value="">Select Photographer</option>
         </select>
-        <span class="error-message" id="ephotographer-error"></span>
         <select id="epackageType" required>
           <option value="">Select Package</option>
         </select>
-        <span class="error-message" id="epackageType-error"></span>
         <button type="submit" class="btn btn-primary">Submit Booking</button>
       </form>
       <table id="eventsTable">
@@ -329,12 +301,9 @@
       <form id="ticketForm" style="display:none;">
         <input type="text" id="tname" placeholder="Your Name" readonly>
         <input type="email" id="temail" placeholder="Your Email" readonly>
-        <input type="text" id="tphone" placeholder="Phone Number" required>
-        <span class="error-message" id="tphone-error"></span>
+        <input type="text" id="tphone" placeholder="Phone Number" required pattern="\d{10}" title="Please enter a 10-digit phone number" maxlength="10">
         <input type="text" id="tsubject" placeholder="Subject" required>
-        <span class="error-message" id="tsubject-error"></span>
         <textarea id="tmessage" placeholder="Describe your issue or question..." required></textarea>
-        <span class="error-message" id="tmessage-error"></span>
         <button type="submit" class="btn btn-primary">Submit Ticket</button>
       </form>
       <table id="ticketsTable">
@@ -403,7 +372,6 @@
     loadPhotographers();
     loadPackages();
     loadGallery();
-    setupFormValidation();
   });
 
   function setupNavigation() {
@@ -422,9 +390,6 @@
   function toggleEventForm() {
     const form = document.getElementById("eventForm");
     form.style.display = form.style.display === "none" ? "block" : "none";
-    if (form.style.display === "block") {
-      clearFormErrors("eventForm");
-    }
   }
 
   async function loadPhotographers() {
@@ -457,11 +422,6 @@
 
   document.getElementById("eventForm").addEventListener("submit", async function(e) {
     e.preventDefault();
-    
-    if (!validateEventForm()) {
-      return;
-    }
-    
     const eventData = {
       name: loggedInUser.uname,
       email: loggedInUser.uemail,
@@ -509,18 +469,10 @@
   function toggleTicketForm() {
     const form = document.getElementById("ticketForm");
     form.style.display = form.style.display === "none" ? "block" : "none";
-    if (form.style.display === "block") {
-      clearFormErrors("ticketForm");
-    }
   }
 
   document.getElementById("ticketForm").addEventListener("submit", async function(e) {
     e.preventDefault();
-    
-    if (!validateTicketForm()) {
-      return;
-    }
-    
     const ticketData = {
       tname: loggedInUser.uname,
       temail: loggedInUser.uemail,
@@ -613,222 +565,6 @@
     localStorage.removeItem("loggedInUser");
     localStorage.removeItem("userRole");
     window.location.href = "login.html";
-  }
-
-  // Validation Functions
-  function setupFormValidation() {
-    // Real-time validation for event form
-    const eventFields = ["ephone", "etype", "edate", "etime", "elocation", "ephotographer", "epackageType"];
-    eventFields.forEach(field => {
-      const element = document.getElementById(field);
-      element.addEventListener("blur", () => validateEventField(field));
-      element.addEventListener("input", () => {
-        if (element.classList.contains("error")) {
-          validateEventField(field);
-        }
-      });
-    });
-
-    // Real-time validation for ticket form
-    const ticketFields = ["tphone", "tsubject", "tmessage"];
-    ticketFields.forEach(field => {
-      const element = document.getElementById(field);
-      element.addEventListener("blur", () => validateTicketField(field));
-      element.addEventListener("input", () => {
-        if (element.classList.contains("error")) {
-          validateTicketField(field);
-        }
-      });
-    });
-  }
-
-  function validateEventField(fieldId) {
-    const field = document.getElementById(fieldId);
-    const errorSpan = document.getElementById(fieldId + "-error");
-    let isValid = true;
-    let errorMessage = "";
-
-    switch(fieldId) {
-      case "ephone":
-        const phonePattern = /^[\d\s\-\+\(\)]{8,}$/;
-        if (!field.value.trim()) {
-          errorMessage = "Phone number is required";
-          isValid = false;
-        } else if (!phonePattern.test(field.value)) {
-          errorMessage = "Please enter a valid phone number (minimum 8 digits)";
-          isValid = false;
-        }
-        break;
-      
-      case "etype":
-        if (!field.value.trim()) {
-          errorMessage = "Event type is required";
-          isValid = false;
-        } else if (field.value.trim().length < 3) {
-          errorMessage = "Event type must be at least 3 characters";
-          isValid = false;
-        }
-        break;
-      
-      case "edate":
-        if (!field.value) {
-          errorMessage = "Event date is required";
-          isValid = false;
-        } else {
-          const selectedDate = new Date(field.value);
-          const today = new Date();
-          today.setHours(0, 0, 0, 0);
-          if (selectedDate < today) {
-            errorMessage = "Event date cannot be in the past";
-            isValid = false;
-          }
-        }
-        break;
-      
-      case "etime":
-        if (!field.value) {
-          errorMessage = "Event time is required";
-          isValid = false;
-        }
-        break;
-      
-      case "elocation":
-        if (!field.value.trim()) {
-          errorMessage = "Event location is required";
-          isValid = false;
-        } else if (field.value.trim().length < 5) {
-          errorMessage = "Please provide a more detailed location";
-          isValid = false;
-        }
-        break;
-      
-      case "ephotographer":
-        if (!field.value) {
-          errorMessage = "Please select a photographer";
-          isValid = false;
-        }
-        break;
-      
-      case "epackageType":
-        if (!field.value) {
-          errorMessage = "Please select a package";
-          isValid = false;
-        }
-        break;
-    }
-
-    if (isValid) {
-      field.classList.remove("error");
-      field.classList.add("success");
-      errorSpan.classList.remove("show");
-      errorSpan.textContent = "";
-    } else {
-      field.classList.add("error");
-      field.classList.remove("success");
-      errorSpan.textContent = errorMessage;
-      errorSpan.classList.add("show");
-    }
-
-    return isValid;
-  }
-
-  function validateTicketField(fieldId) {
-    const field = document.getElementById(fieldId);
-    const errorSpan = document.getElementById(fieldId + "-error");
-    let isValid = true;
-    let errorMessage = "";
-
-    switch(fieldId) {
-      case "tphone":
-        const phonePattern = /^[\d\s\-\+\(\)]{8,}$/;
-        if (!field.value.trim()) {
-          errorMessage = "Phone number is required";
-          isValid = false;
-        } else if (!phonePattern.test(field.value)) {
-          errorMessage = "Please enter a valid phone number (minimum 8 digits)";
-          isValid = false;
-        }
-        break;
-      
-      case "tsubject":
-        if (!field.value.trim()) {
-          errorMessage = "Subject is required";
-          isValid = false;
-        } else if (field.value.trim().length < 5) {
-          errorMessage = "Subject must be at least 5 characters";
-          isValid = false;
-        } else if (field.value.trim().length > 100) {
-          errorMessage = "Subject must be less than 100 characters";
-          isValid = false;
-        }
-        break;
-      
-      case "tmessage":
-        if (!field.value.trim()) {
-          errorMessage = "Message is required";
-          isValid = false;
-        } else if (field.value.trim().length < 10) {
-          errorMessage = "Please provide more details (minimum 10 characters)";
-          isValid = false;
-        } else if (field.value.trim().length > 1000) {
-          errorMessage = "Message must be less than 1000 characters";
-          isValid = false;
-        }
-        break;
-    }
-
-    if (isValid) {
-      field.classList.remove("error");
-      field.classList.add("success");
-      errorSpan.classList.remove("show");
-      errorSpan.textContent = "";
-    } else {
-      field.classList.add("error");
-      field.classList.remove("success");
-      errorSpan.textContent = errorMessage;
-      errorSpan.classList.add("show");
-    }
-
-    return isValid;
-  }
-
-  function validateEventForm() {
-    const fields = ["ephone", "etype", "edate", "etime", "elocation", "ephotographer", "epackageType"];
-    let isValid = true;
-    
-    fields.forEach(field => {
-      if (!validateEventField(field)) {
-        isValid = false;
-      }
-    });
-
-    return isValid;
-  }
-
-  function validateTicketForm() {
-    const fields = ["tphone", "tsubject", "tmessage"];
-    let isValid = true;
-    
-    fields.forEach(field => {
-      if (!validateTicketField(field)) {
-        isValid = false;
-      }
-    });
-
-    return isValid;
-  }
-
-  function clearFormErrors(formId) {
-    const form = document.getElementById(formId);
-    const inputs = form.querySelectorAll("input, select, textarea");
-    inputs.forEach(input => {
-      input.classList.remove("error", "success");
-    });
-    const errorSpans = form.querySelectorAll(".error-message");
-    errorSpans.forEach(span => {
-      span.classList.remove("show");
-      span.textContent = "";
-    });
   }
 </script>
 </body>
