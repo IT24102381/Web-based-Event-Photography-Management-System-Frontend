@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,18 +14,18 @@
       padding: 0;
       box-sizing: border-box;
     }
-    
+
     body {
       font-family: 'Poppins', sans-serif;
       background: #f5f7fa;
       color: #2d3748;
     }
-    
+
     .dashboard {
       display: flex;
       min-height: 100vh;
     }
-    
+
     .sidebar {
       width: 260px;
       background: #ffffff;
@@ -33,35 +34,35 @@
       display: flex;
       flex-direction: column;
     }
-    
+
     .logo {
       padding: 0 24px 24px;
       border-bottom: 1px solid #e2e8f0;
       margin-bottom: 24px;
     }
-    
+
     .logo h2 {
       font-size: 18px;
       font-weight: 600;
       color: #1a202c;
     }
-    
+
     .logo p {
       font-size: 13px;
       color: #718096;
       margin-top: 4px;
     }
-    
+
     .sidebar ul {
       list-style: none;
       padding: 0 12px;
       flex: 1;
     }
-    
+
     .sidebar li {
       margin-bottom: 4px;
     }
-    
+
     .sidebar a {
       text-decoration: none;
       color: #4a5568;
@@ -74,17 +75,17 @@
       font-size: 14px;
       font-weight: 500;
     }
-    
+
     .sidebar a:hover {
       background: #f7fafc;
       color: #2d3748;
     }
-    
+
     .sidebar a.active {
       background: #edf2f7;
       color: #4299e1;
     }
-    
+
     .btn-logout {
       margin: 24px 12px 0;
       padding: 10px 16px;
@@ -99,24 +100,24 @@
       font-weight: 500;
       transition: all 0.2s;
     }
-    
+
     .btn-logout:hover {
       background: #fff5f5;
     }
-    
+
     .main-content {
       flex: 1;
       padding: 32px;
       overflow-y: auto;
     }
-    
+
     h1 {
       font-size: 28px;
       font-weight: 600;
       color: #1a202c;
       margin-bottom: 24px;
     }
-    
+
     .btn {
       padding: 10px 20px;
       border: none;
@@ -129,25 +130,25 @@
       align-items: center;
       gap: 8px;
     }
-    
+
     .btn-primary {
       background: #4299e1;
       color: white;
     }
-    
+
     .btn-primary:hover {
       background: #3182ce;
     }
-    
+
     .btn-success {
       background: #48bb78;
       color: white;
     }
-    
+
     .btn-success:hover {
       background: #38a169;
     }
-    
+
     .card {
       background: white;
       border-radius: 12px;
@@ -155,7 +156,7 @@
       padding: 24px;
       margin-top: 20px;
     }
-    
+
     table {
       width: 100%;
       border-collapse: collapse;
@@ -165,14 +166,15 @@
       overflow: hidden;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
-    
-    th, td {
+
+    th,
+    td {
       padding: 14px 16px;
       text-align: left;
       border-bottom: 1px solid #e2e8f0;
       font-size: 14px;
     }
-    
+
     th {
       background: #e2e8f0;
       color: #4a5568;
@@ -181,23 +183,23 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
-    
+
     tr:last-child td {
       border-bottom: none;
     }
-    
+
     tr:hover {
       background: #f7fafc;
     }
-    
+
     .content-section {
       display: none;
     }
-    
+
     .content-section.active {
       display: block;
     }
-    
+
     form {
       background: white;
       padding: 24px;
@@ -205,8 +207,10 @@
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       margin-top: 20px;
     }
-    
-    form input, form select, form textarea {
+
+    form input,
+    form select,
+    form textarea {
       width: 100%;
       padding: 12px;
       margin-bottom: 16px;
@@ -215,35 +219,37 @@
       font-size: 14px;
       transition: all 0.2s;
     }
-    
-    form input:focus, form select:focus, form textarea:focus {
+
+    form input:focus,
+    form select:focus,
+    form textarea:focus {
       outline: none;
       border-color: #4299e1;
       box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
     }
-    
+
     form textarea {
       min-height: 100px;
       resize: vertical;
       font-family: inherit;
     }
-    
+
     form input[readonly] {
       background: #f7fafc;
       cursor: not-allowed;
     }
-    
+
     .empty-state {
       text-align: center;
       padding: 48px 24px;
       color: #718096;
     }
-    
+
     .empty-state p {
       font-size: 15px;
       margin-top: 8px;
     }
-    
+
     .error-message {
       color: #e53e3e;
       font-size: 12px;
@@ -251,323 +257,465 @@
       margin-bottom: 12px;
       display: none;
     }
-    
+
     .error-message.show {
       display: block;
     }
-    
-    form input.error, form select.error, form textarea.error {
+
+    form input.error,
+    form select.error,
+    form textarea.error {
       border-color: #fc8181;
       background: #fff5f5;
     }
-    
-    form input.success, form select.success, form textarea.success {
+
+    form input.success,
+    form select.success,
+    form textarea.success {
       border-color: #48bb78;
+    }
+
+    tr:hover {
+      background: #f7fafc;
+    }
+
+    /* Status badges */
+    .status-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .status-pending {
+      background: #fef3c7;
+      /* amber-100 */
+      color: #92400e;
+      /* amber-800 */
+    }
+
+    .status-in-progress {
+      background: #dbeafe;
+      /* blue-100 */
+      color: #1e40af;
+      /* blue-800 */
+    }
+
+    .status-closed {
+      background: #fee2e2;
+      /* red-100 */
+      color: #991b1b;
+      /* red-800 */
+    }
+
+    .status-resolved {
+      background: #dcfce7;
+      /* green-100 */
+      color: #166534;
+      /* green-800 */
+    }
+
+    .event-status-pending {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .event-status-approved {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .event-status-rescheduled {
+      background: #dbeafe;
+      color: #1e40af;
     }
   </style>
 </head>
+
 <body>
-<div class="dashboard">
-  <div class="sidebar">
-    <div class="logo">
-      <h2 id="welcomeText">Customer Portal</h2>
-      <p id="userEmail"></p>
+  <div class="dashboard">
+    <div class="sidebar">
+      <div class="logo">
+        <h2 id="welcomeText">Customer Portal</h2>
+        <p id="userEmail"></p>
+      </div>
+      <ul>
+        <li><a href="#" class="nav-link active" data-target="eventSection">📅 Events</a></li>
+        <li><a href="#" class="nav-link" data-target="ticketsSection">🎫 Support Tickets</a></li>
+        <li><a href="#" class="nav-link" data-target="gallerySection">📸 Gallery</a></li>
+        <li><a href="#" class="nav-link" data-target="profileSection">👤 Profile</a></li>
+      </ul>
+      <a href="login.html" class="btn-logout" onclick="logout()">Logout</a>
     </div>
-    <ul>
-      <li><a href="#" class="nav-link active" data-target="eventSection">📅 Events</a></li>
-      <li><a href="#" class="nav-link" data-target="ticketsSection">🎫 Support Tickets</a></li>
-      <li><a href="#" class="nav-link" data-target="gallerySection">📸 Gallery</a></li>
-      <li><a href="#" class="nav-link" data-target="profileSection">👤 Profile</a></li>
-    </ul>
-    <a href="login.html" class="btn-logout" onclick="logout()">Logout</a>
+
+    <div class="main-content">
+      <!-- Events -->
+      <div id="eventSection" class="content-section active">
+        <h1>My Events</h1>
+        <button class="btn btn-success" onclick="toggleEventForm()">+ Book Event</button>
+        <form id="eventForm" style="display:none;">
+          <input type="text" id="ename" placeholder="Your Name" readonly>
+          <input type="email" id="eemail" placeholder="Your Email" readonly>
+          <input type="text" id="ephone" placeholder="Phone Number" required>
+          <span class="error-message" id="ephone-error"></span>
+          <input type="text" id="etype" placeholder="Event Type (e.g., Wedding, Birthday)" required>
+          <span class="error-message" id="etype-error"></span>
+          <input type="date" id="edate" required>
+          <span class="error-message" id="edate-error"></span>
+          <input type="time" id="etime" required>
+          <span class="error-message" id="etime-error"></span>
+          <input type="text" id="elocation" placeholder="Event Location" required>
+          <span class="error-message" id="elocation-error"></span>
+          <select id="ephotographer" required>
+            <option value="">Select Photographer</option>
+          </select>
+          <span class="error-message" id="ephotographer-error"></span>
+          <select id="epackageType" required>
+            <option value="">Select Package</option>
+          </select>
+          <span class="error-message" id="epackageType-error"></span>
+          <button type="submit" class="btn btn-primary">Submit Booking</button>
+        </form>
+        <table id="eventsTable">
+          <thead>
+            <tr>
+              <th>Booking ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Event Type</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Location</th>
+              <th>Photographer</th>
+              <th>Package</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="eventsTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- Tickets -->
+      <div id="ticketsSection" class="content-section">
+        <h1>Support Tickets</h1>
+        <button class="btn btn-success" onclick="toggleTicketForm()">+ Create New Ticket</button>
+        <form id="ticketForm" style="display:none;">
+          <input type="text" id="tname" placeholder="Your Name" readonly>
+          <input type="email" id="temail" placeholder="Your Email" readonly>
+          <input type="text" id="tphone" placeholder="Phone Number" required>
+          <span class="error-message" id="tphone-error"></span>
+          <input type="text" id="tsubject" placeholder="Subject" required>
+          <span class="error-message" id="tsubject-error"></span>
+          <textarea id="tmessage" placeholder="Describe your issue or question..." required></textarea>
+          <span class="error-message" id="tmessage-error"></span>
+          <button type="submit" class="btn btn-primary">Submit Ticket</button>
+        </form>
+        <table id="ticketsTable">
+          <thead>
+            <tr>
+              <th>Ticket ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Subject</th>
+              <th>Message</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="ticketsTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- Gallery -->
+      <div id="gallerySection" class="content-section">
+        <h1>My Gallery</h1>
+        <table id="galleryTable">
+          <thead>
+            <tr>
+              <th>Event ID</th>
+              <th>File Name</th>
+              <th>Upload Date</th>
+              <th>Download</th>
+            </tr>
+          </thead>
+          <tbody id="galleryTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- Profile -->
+      <div id="profileSection" class="content-section">
+        <h1>My Profile</h1>
+        <form id="profileForm">
+          <input type="text" id="pname" placeholder="Full Name" required>
+          <input type="email" id="pemail" placeholder="Email" readonly>
+          <input type="text" id="pphone" placeholder="Phone Number" required>
+          <input type="password" id="ppassword" placeholder="New Password (leave blank to keep current)">
+          <button type="submit" class="btn btn-primary">Update Profile</button>
+        </form>
+      </div>
+    </div>
   </div>
 
-  <div class="main-content">
-    <!-- Events -->
-    <div id="eventSection" class="content-section active">
-      <h1>My Events</h1>
-      <button class="btn btn-success" onclick="toggleEventForm()">+ Book Event</button>
-      <form id="eventForm" style="display:none;">
-        <input type="text" id="ename" placeholder="Your Name" readonly>
-        <input type="email" id="eemail" placeholder="Your Email" readonly>
-        <input type="text" id="ephone" placeholder="Phone Number" required>
-        <span class="error-message" id="ephone-error"></span>
-        <input type="text" id="etype" placeholder="Event Type (e.g., Wedding, Birthday)" required>
-        <span class="error-message" id="etype-error"></span>
-        <input type="date" id="edate" required>
-        <span class="error-message" id="edate-error"></span>
-        <input type="time" id="etime" required>
-        <span class="error-message" id="etime-error"></span>
-        <input type="text" id="elocation" placeholder="Event Location" required>
-        <span class="error-message" id="elocation-error"></span>
-        <select id="ephotographer" required>
-          <option value="">Select Photographer</option>
-        </select>
-        <span class="error-message" id="ephotographer-error"></span>
-        <select id="epackageType" required>
-          <option value="">Select Package</option>
-        </select>
-        <span class="error-message" id="epackageType-error"></span>
-        <button type="submit" class="btn btn-primary">Submit Booking</button>
-      </form>
-      <table id="eventsTable">
-        <thead>
-        <tr>
-          <th>Booking ID</th><th>Name</th><th>Email</th><th>Phone</th>
-          <th>Event Type</th><th>Date</th><th>Time</th><th>Location</th>
-          <th>Photographer</th><th>Package</th>
-        </tr>
-        </thead>
-        <tbody id="eventsTableBody"></tbody>
-      </table>
-    </div>
+  <script>
+    const TICKET_API_URL = "http://localhost:9000/api/tickets";
+    const EVENT_API_URL = "http://localhost:9000/api/bookings";
+    const PHOTOGRAPHER_API_URL = "http://localhost:9000/api/photographers";
+    const PACKAGE_API_URL = "http://localhost:9000/api/packages";
+    const GALLERY_API_URL = "http://localhost:9000/zip";
+    const PROFILE_API_URL = "http://localhost:9000/api/customers";
 
-    <!-- Tickets -->
-    <div id="ticketsSection" class="content-section">
-      <h1>Support Tickets</h1>
-      <button class="btn btn-success" onclick="toggleTicketForm()">+ Create New Ticket</button>
-      <form id="ticketForm" style="display:none;">
-        <input type="text" id="tname" placeholder="Your Name" readonly>
-        <input type="email" id="temail" placeholder="Your Email" readonly>
-        <input type="text" id="tphone" placeholder="Phone Number" required>
-        <span class="error-message" id="tphone-error"></span>
-        <input type="text" id="tsubject" placeholder="Subject" required>
-        <span class="error-message" id="tsubject-error"></span>
-        <textarea id="tmessage" placeholder="Describe your issue or question..." required></textarea>
-        <span class="error-message" id="tmessage-error"></span>
-        <button type="submit" class="btn btn-primary">Submit Ticket</button>
-      </form>
-      <table id="ticketsTable">
-        <thead>
-        <tr><th>Ticket ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Subject</th><th>Message</th></tr>
-        </thead>
-        <tbody id="ticketsTableBody"></tbody>
-      </table>
-    </div>
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (!loggedInUser) window.location.href = "login.html";
 
-    <!-- Gallery -->
-    <div id="gallerySection" class="content-section">
-      <h1>My Gallery</h1>
-      <table id="galleryTable">
-        <thead>
-          <tr>
-            <th>Event ID</th>
-            <th>File Name</th>
-            <th>Upload Date</th>
-            <th>Download</th>
-          </tr>
-        </thead>
-        <tbody id="galleryTableBody"></tbody>
-      </table>
-    </div>
+    document.getElementById("welcomeText").textContent = "Welcome, " + (loggedInUser.uname || "Customer");
+    document.getElementById("userEmail").textContent = loggedInUser.uemail || "";
+    document.getElementById("ename").value = loggedInUser.uname || "";
+    document.getElementById("eemail").value = loggedInUser.uemail || "";
+    document.getElementById("tname").value = loggedInUser.uname || "";
+    document.getElementById("temail").value = loggedInUser.uemail || "";
+    document.getElementById("pname").value = loggedInUser.uname || "";
+    document.getElementById("pemail").value = loggedInUser.uemail || "";
+    document.getElementById("pphone").value = loggedInUser.uphone || "";
 
-    <!-- Profile -->
-    <div id="profileSection" class="content-section">
-      <h1>My Profile</h1>
-      <form id="profileForm">
-        <input type="text" id="pname" placeholder="Full Name" required>
-        <input type="email" id="pemail" placeholder="Email" readonly>
-        <input type="text" id="pphone" placeholder="Phone Number" required>
-        <input type="password" id="ppassword" placeholder="New Password (leave blank to keep current)">
-        <button type="submit" class="btn btn-primary">Update Profile</button>
-      </form>
-    </div>
-  </div>
-</div>
-
-<script>
-  const TICKET_API_URL = "http://localhost:9000/api/tickets";
-  const EVENT_API_URL = "http://localhost:9000/api/bookings";
-  const PHOTOGRAPHER_API_URL = "http://localhost:9000/api/photographers";
-  const PACKAGE_API_URL = "http://localhost:9000/api/packages";
-  const GALLERY_API_URL = "http://localhost:9000/zip";
-  const PROFILE_API_URL = "http://localhost:9000/api/customers";
-
-  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-  if (!loggedInUser) window.location.href = "login.html";
-
-  document.getElementById("welcomeText").textContent = "Welcome, " + (loggedInUser.uname || "Customer");
-  document.getElementById("userEmail").textContent = loggedInUser.uemail || "";
-  document.getElementById("ename").value = loggedInUser.uname || "";
-  document.getElementById("eemail").value = loggedInUser.uemail || "";
-  document.getElementById("tname").value = loggedInUser.uname || "";
-  document.getElementById("temail").value = loggedInUser.uemail || "";
-  document.getElementById("pname").value = loggedInUser.uname || "";
-  document.getElementById("pemail").value = loggedInUser.uemail || "";
-  document.getElementById("pphone").value = loggedInUser.uphone || "";
-
-  document.addEventListener("DOMContentLoaded", function() {
-    setupNavigation();
-    loadEvents();
-    loadTickets();
-    loadPhotographers();
-    loadPackages();
-    loadGallery();
-    setupFormValidation();
-  });
-
-  function setupNavigation() {
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        navLinks.forEach(l => l.classList.remove('active'));
-        document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
-        this.classList.add('active');
-        document.getElementById(this.getAttribute('data-target')).classList.add('active');
-      });
+    document.addEventListener("DOMContentLoaded", function () {
+      setupNavigation();
+      loadEvents();
+      loadTickets();
+      loadPhotographers();
+      loadPackages();
+      loadGallery();
+      setupFormValidation();
     });
-  }
 
-  function toggleEventForm() {
-    const form = document.getElementById("eventForm");
-    form.style.display = form.style.display === "none" ? "block" : "none";
-    if (form.style.display === "block") {
-      clearFormErrors("eventForm");
+    function setupNavigation() {
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          navLinks.forEach(l => l.classList.remove('active'));
+          document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
+          this.classList.add('active');
+          document.getElementById(this.getAttribute('data-target')).classList.add('active');
+        });
+      });
     }
-  }
 
-  async function loadPhotographers() {
-    try {
-      const res = await fetch(PHOTOGRAPHER_API_URL);
-      const photographers = await res.json();
-      const select = document.getElementById("ephotographer");
-      photographers.forEach(p => {
-        const option = document.createElement("option");
-        option.value = p.firstName;
-        option.textContent = p.firstName;
-        select.appendChild(option);
-      });
-    } catch (err) { console.error("Failed to load photographers:", err); }
-  }
-
-  async function loadPackages() {
-    try {
-      const res = await fetch(PACKAGE_API_URL);
-      const packages = await res.json();
-      const select = document.getElementById("epackageType");
-      packages.forEach(p => {
-        const option = document.createElement("option");
-        option.value = p.name;
-        option.textContent = p.name;
-        select.appendChild(option);
-      });
-    } catch (err) { console.error("Failed to load packages:", err); }
-  }
-
-  document.getElementById("eventForm").addEventListener("submit", async function(e) {
-    e.preventDefault();
-    
-    if (!validateEventForm()) {
-      return;
-    }
-    
-    const eventData = {
-      name: loggedInUser.uname,
-      email: loggedInUser.uemail,
-      phone: document.getElementById("ephone").value,
-      eventType: document.getElementById("etype").value,
-      date: document.getElementById("edate").value,
-      time: document.getElementById("etime").value,
-      location: document.getElementById("elocation").value,
-      photographer: document.getElementById("ephotographer").value,
-      packageType: document.getElementById("epackageType").value
-    };
-    try {
-      const res = await fetch(EVENT_API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(eventData)
-      });
-      if (res.ok) {
-        localStorage.setItem("lastEvent", JSON.stringify(eventData));
-        alert("Event created successfully!");
-        window.location.href = "payment.html";
-      } else {
-        alert("Failed to create event");
+    function toggleEventForm() {
+      const form = document.getElementById("eventForm");
+      form.style.display = form.style.display === "none" ? "block" : "none";
+      if (form.style.display === "block") {
+        clearFormErrors("eventForm");
       }
-    } catch (err) { console.error(err); }
-  });
-
-  async function loadEvents() {
-    try {
-      const res = await fetch(EVENT_API_URL);
-      const events = await res.json();
-      const tbody = document.getElementById("eventsTableBody");
-      tbody.innerHTML = "";
-      const myEvents = events.filter(ev => ev.email === loggedInUser.uemail);
-      myEvents.forEach(ev => {
-        tbody.innerHTML += `<tr>
-          <td>${ev.id}</td><td>${ev.name}</td><td>${ev.email}</td>
-          <td>${ev.phone}</td><td>${ev.eventType}</td><td>${ev.date}</td>
-          <td>${ev.time}</td><td>${ev.location}</td><td>${ev.photographer}</td><td>${ev.packageType}</td>
-        </tr>`;
-      });
-    } catch (e) { console.error(e); }
-  }
-
-  function toggleTicketForm() {
-    const form = document.getElementById("ticketForm");
-    form.style.display = form.style.display === "none" ? "block" : "none";
-    if (form.style.display === "block") {
-      clearFormErrors("ticketForm");
     }
-  }
 
-  document.getElementById("ticketForm").addEventListener("submit", async function(e) {
-    e.preventDefault();
-    
-    if (!validateTicketForm()) {
-      return;
+    async function loadPhotographers() {
+      try {
+        const res = await fetch(PHOTOGRAPHER_API_URL);
+        const photographers = await res.json();
+        const select = document.getElementById("ephotographer");
+        photographers.forEach(p => {
+          const option = document.createElement("option");
+          option.value = p.firstName;
+          option.textContent = p.firstName;
+          select.appendChild(option);
+        });
+      } catch (err) { console.error("Failed to load photographers:", err); }
     }
-    
-    const ticketData = {
-      tname: loggedInUser.uname,
-      temail: loggedInUser.uemail,
-      tphone: document.getElementById("tphone").value,
-      tsubject: document.getElementById("tsubject").value,
-      tmessage: document.getElementById("tmessage").value
-    };
-    try {
-      const res = await fetch(TICKET_API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(ticketData)
-      });
-      if (res.ok) {
-        alert("Ticket created successfully!");
-        loadTickets();
-        toggleTicketForm();
-        this.reset();
-      } else { alert("Failed to create ticket"); }
-    } catch (err) { console.error(err); }
-  });
 
-  async function loadTickets() {
-    try {
-      const res = await fetch(TICKET_API_URL);
-      const tickets = await res.json();
-      const tbody = document.getElementById("ticketsTableBody");
-      tbody.innerHTML = "";
-      const myTickets = tickets.filter(t => t.temail === loggedInUser.uemail);
-      myTickets.forEach(ticket => {
-        tbody.innerHTML += `<tr>
-          <td>${ticket.tid}</td><td>${ticket.tname}</td><td>${ticket.temail}</td>
-          <td>${ticket.tphone}</td><td>${ticket.tsubject}</td><td>${ticket.tmessage}</td>
+    async function loadPackages() {
+      try {
+        const res = await fetch(PACKAGE_API_URL);
+        const packages = await res.json();
+        const select = document.getElementById("epackageType");
+        packages.forEach(p => {
+          const option = document.createElement("option");
+          option.value = p.name;
+          option.textContent = p.name;
+          select.appendChild(option);
+        });
+      } catch (err) { console.error("Failed to load packages:", err); }
+    }
+
+    document.getElementById("eventForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      if (!validateEventForm()) {
+        return;
+      }
+
+      const eventData = {
+        name: loggedInUser.uname,
+        email: loggedInUser.uemail,
+        phone: document.getElementById("ephone").value,
+        eventType: document.getElementById("etype").value,
+        date: document.getElementById("edate").value,
+        time: document.getElementById("etime").value,
+        location: document.getElementById("elocation").value,
+        photographer: document.getElementById("ephotographer").value,
+        packageType: document.getElementById("epackageType").value
+      };
+      try {
+        const res = await fetch(EVENT_API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(eventData)
+        });
+        if (res.ok) {
+          localStorage.setItem("lastEvent", JSON.stringify(eventData));
+          alert("Event created successfully!");
+          window.location.href = "payment.html";
+        } else {
+          alert("Failed to create event");
+        }
+      } catch (err) { console.error(err); }
+    });
+
+    async function loadEvents() {
+      try {
+        const res = await fetch(EVENT_API_URL);
+        const events = await res.json();
+        const tbody = document.getElementById("eventsTableBody");
+        tbody.innerHTML = "";
+        const myEvents = events.filter(ev => ev.email === loggedInUser.uemail);
+        myEvents.forEach(ev => {
+          const status = ev.status || ev.bookingStatus || "Pending";
+          const statusClass = getEventStatusClass(status);
+          const statusLabel = toTitleCase(status);
+          tbody.innerHTML += `<tr>
+          <td>${ev.id}</td>
+          <td>${ev.name}</td>
+          <td>${ev.email}</td>
+          <td>${ev.phone}</td>
+          <td>${ev.eventType}</td>
+          <td>${ev.date}</td>
+          <td>${ev.time}</td>
+          <td>${ev.location}</td>
+          <td>${ev.photographer}</td>
+          <td>${ev.packageType}</td>
+         <td><span class="status-badge ${statusClass}">${statusLabel}</span></td>
         </tr>`;
-      });
-    } catch (e) { console.error(e); }
-  }
+        });
+      } catch (e) { console.error(e); }
+    }
+    // Add this helper function
+    function getEventStatusClass(status) {
+      const statusLower = String(status).toLowerCase().trim();
+      switch (statusLower) {
+        case 'pending': return 'event-status-pending';
+        case 'approved': return 'event-status-approved';
+        case 'rescheduled': return 'event-status-rescheduled';
+        default: return 'event-status-pending';
+      }
+    }
 
-  async function loadGallery() {
-    try {
-      const res = await fetch(`${GALLERY_API_URL}/customer/${loggedInUser.uemail}`);
-      const zips = await res.json();
-      const tbody = document.getElementById("galleryTableBody");
-      tbody.innerHTML = "";
+    // Add this if you don't already have it
+    function toTitleCase(str) {
+      return str.split(/\s+/)
+        .map(s => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase())
+        .join(" ");
+    }
 
-      zips.forEach(zip => {
-        tbody.innerHTML += `
+    function toggleTicketForm() {
+      const form = document.getElementById("ticketForm");
+      form.style.display = form.style.display === "none" ? "block" : "none";
+      if (form.style.display === "block") {
+        clearFormErrors("ticketForm");
+      }
+    }
+
+    document.getElementById("ticketForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      if (!validateTicketForm()) {
+        return;
+      }
+
+      const ticketData = {
+        tname: loggedInUser.uname,
+        temail: loggedInUser.uemail,
+        tphone: document.getElementById("tphone").value,
+        tsubject: document.getElementById("tsubject").value,
+        tmessage: document.getElementById("tmessage").value
+      };
+      try {
+        const res = await fetch(TICKET_API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(ticketData)
+        });
+        if (res.ok) {
+          alert("Ticket created successfully!");
+          loadTickets();
+          toggleTicketForm();
+          this.reset();
+        } else { alert("Failed to create ticket"); }
+      } catch (err) { console.error(err); }
+    });
+
+    async function loadTickets() {
+      try {
+        const res = await fetch(TICKET_API_URL);
+        const tickets = await res.json();
+        const tbody = document.getElementById("ticketsTableBody");
+        tbody.innerHTML = "";
+        const myTickets = tickets.filter(t => t.temail === loggedInUser.uemail);
+        myTickets.forEach(ticket => {
+          const statusRaw = ticket.tstatus || "Pending";
+          const statusNorm = String(statusRaw).toLowerCase().replace(/[_-]/g, " ").trim();
+          const statusClass = getStatusClass(statusNorm);
+          const statusLabel = toTitleCase(statusNorm);
+          tbody.innerHTML += `<tr>
+             <td>${ticket.tid}</td>
+             <td>${ticket.tname}</td>
+             <td>${ticket.temail}</td>
+             <td>${ticket.tphone}</td>
+             <td>${ticket.tsubject}</td>
+             <td>${ticket.tmessage}</td>
+            <td><span class="status-badge ${statusClass}">${statusLabel}</span></td>
+            </tr>`;
+        });
+      } catch (e) { console.error(e); }
+      function clearFormErrors(formId) {
+        const form = document.getElementById(formId);
+        const inputs = form.querySelectorAll("input, select, textarea");
+        inputs.forEach(input => {
+          input.classList.remove("error", "success");
+        });
+        const errorSpans = form.querySelectorAll(".error-message");
+        errorSpans.forEach(span => {
+          span.classList.remove("show");
+          span.textContent = "";
+        });
+      }
+
+      // Helpers for status badges
+      function getStatusClass(status) {
+        switch (status) {
+          case "pending": return "status-pending";
+          case "in progress": return "status-in-progress";
+          case "closed": return "status-closed";
+          case "resolved": return "status-resolved";
+          default: return "status-pending";
+        }
+      }
+
+      function toTitleCase(str) {
+        return str.split(/\s+/).map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(" ");
+      }
+    }
+
+    async function loadGallery() {
+      try {
+        const res = await fetch(`${GALLERY_API_URL}/customer/${loggedInUser.uemail}`);
+        const zips = await res.json();
+        const tbody = document.getElementById("galleryTableBody");
+        tbody.innerHTML = "";
+
+        zips.forEach(zip => {
+          tbody.innerHTML += `
           <tr>
             <td>${zip.eventId || "-"}</td>
             <td>${zip.fileName}</td>
@@ -579,257 +727,286 @@
               </a>
             </td>
           </tr>`;
-      });
-    } catch (e) {
-      console.error("Failed to load gallery:", e);
-    }
-  }
-
-  document.getElementById("profileForm").addEventListener("submit", async function(e) {
-    e.preventDefault();
-    const profileData = {
-      uname: document.getElementById("pname").value,
-      uemail: document.getElementById("pemail").value,
-      uphone: document.getElementById("pphone").value,
-      upassword: document.getElementById("ppassword").value
-    };
-    try {
-      const res = await fetch(`${PROFILE_API_URL}/${loggedInUser.uid}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(profileData)
-      });
-      if (res.ok) {
-        alert("Profile updated successfully!");
-        localStorage.setItem("loggedInUser", JSON.stringify(profileData));
-        document.getElementById("welcomeText").textContent = "Welcome, " + profileData.uname;
-      } else {
-        alert("Failed to update profile");
+        });
+      } catch (e) {
+        console.error("Failed to load gallery:", e);
       }
-    } catch (err) { console.error(err); }
-  });
+    }
 
-  function logout() {
-    localStorage.removeItem("loggedInUser");
-    localStorage.removeItem("userRole");
-    window.location.href = "login.html";
-  }
+    // Replace the existing profile form event listener with this corrected version
+    document.getElementById("profileForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
 
-  // Validation Functions
-  function setupFormValidation() {
-    // Real-time validation for event form
-    const eventFields = ["ephone", "etype", "edate", "etime", "elocation", "ephotographer", "epackageType"];
-    eventFields.forEach(field => {
-      const element = document.getElementById(field);
-      element.addEventListener("blur", () => validateEventField(field));
-      element.addEventListener("input", () => {
-        if (element.classList.contains("error")) {
-          validateEventField(field);
+      // Create profileData object matching the backend User entity structure
+      const profileData = {
+        uid: loggedInUser.uid,
+        uname: document.getElementById("pname").value.trim(),
+        uemail: document.getElementById("pemail").value,
+        uphone: document.getElementById("pphone").value.trim(),
+        upassword: document.getElementById("ppassword").value || loggedInUser.upassword
+      };
+
+      try {
+        console.log("Sending update request:", profileData); // Debug log
+
+        const res = await fetch(`${PROFILE_API_URL}/${loggedInUser.uid}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            // Add any auth headers if required
+          },
+          body: JSON.stringify(profileData)
+        });
+
+        if (!res.ok) {
+          const errorData = await res.json().catch(() => null);
+          throw new Error(errorData?.message || 'Failed to update profile');
         }
-      });
+
+        const updatedUser = await res.json();
+
+        // Update localStorage
+        localStorage.setItem("loggedInUser", JSON.stringify(updatedUser));
+
+        // Update all UI elements
+        document.getElementById("welcomeText").textContent = "Welcome, " + updatedUser.uname;
+        document.getElementById("userEmail").textContent = updatedUser.uemail;
+        document.getElementById("ename").value = updatedUser.uname;
+        document.getElementById("tname").value = updatedUser.uname;
+
+        // Clear password field
+        document.getElementById("ppassword").value = "";
+
+        alert("Profile updated successfully!");
+
+      } catch (err) {
+        console.error("Error updating profile:", err);
+        alert("Failed to update profile. Please try again.");
+      }
     });
 
-    // Real-time validation for ticket form
-    const ticketFields = ["tphone", "tsubject", "tmessage"];
-    ticketFields.forEach(field => {
-      const element = document.getElementById(field);
-      element.addEventListener("blur", () => validateTicketField(field));
-      element.addEventListener("input", () => {
-        if (element.classList.contains("error")) {
-          validateTicketField(field);
-        }
+    function logout() {
+      localStorage.removeItem("loggedInUser");
+      localStorage.removeItem("userRole");
+      window.location.href = "login.html";
+    }
+
+    // Validation Functions
+    function setupFormValidation() {
+      // Real-time validation for event form
+      const eventFields = ["ephone", "etype", "edate", "etime", "elocation", "ephotographer", "epackageType"];
+      eventFields.forEach(field => {
+        const element = document.getElementById(field);
+        element.addEventListener("blur", () => validateEventField(field));
+        element.addEventListener("input", () => {
+          if (element.classList.contains("error")) {
+            validateEventField(field);
+          }
+        });
       });
-    });
-  }
 
-  function validateEventField(fieldId) {
-    const field = document.getElementById(fieldId);
-    const errorSpan = document.getElementById(fieldId + "-error");
-    let isValid = true;
-    let errorMessage = "";
+      // Real-time validation for ticket form
+      const ticketFields = ["tphone", "tsubject", "tmessage"];
+      ticketFields.forEach(field => {
+        const element = document.getElementById(field);
+        element.addEventListener("blur", () => validateTicketField(field));
+        element.addEventListener("input", () => {
+          if (element.classList.contains("error")) {
+            validateTicketField(field);
+          }
+        });
+      });
+    }
 
-    switch(fieldId) {
-      case "ephone":
-        const phonePattern = /^[\d\s\-\+\(\)]{8,}$/;
-        if (!field.value.trim()) {
-          errorMessage = "Phone number is required";
-          isValid = false;
-        } else if (!phonePattern.test(field.value)) {
-          errorMessage = "Please enter a valid phone number (minimum 8 digits)";
-          isValid = false;
-        }
-        break;
-      
-      case "etype":
-        if (!field.value.trim()) {
-          errorMessage = "Event type is required";
-          isValid = false;
-        } else if (field.value.trim().length < 3) {
-          errorMessage = "Event type must be at least 3 characters";
-          isValid = false;
-        }
-        break;
-      
-      case "edate":
-        if (!field.value) {
-          errorMessage = "Event date is required";
-          isValid = false;
-        } else {
-          const selectedDate = new Date(field.value);
-          const today = new Date();
-          today.setHours(0, 0, 0, 0);
-          if (selectedDate < today) {
-            errorMessage = "Event date cannot be in the past";
+    function validateEventField(fieldId) {
+      const field = document.getElementById(fieldId);
+      const errorSpan = document.getElementById(fieldId + "-error");
+      let isValid = true;
+      let errorMessage = "";
+
+      switch (fieldId) {
+        case "ephone":
+          const phonePattern = /^[\d\s\-\+\(\)]{8,}$/;
+          if (!field.value.trim()) {
+            errorMessage = "Phone number is required";
+            isValid = false;
+          } else if (!phonePattern.test(field.value)) {
+            errorMessage = "Please enter a valid phone number (minimum 8 digits)";
             isValid = false;
           }
-        }
-        break;
-      
-      case "etime":
-        if (!field.value) {
-          errorMessage = "Event time is required";
-          isValid = false;
-        }
-        break;
-      
-      case "elocation":
-        if (!field.value.trim()) {
-          errorMessage = "Event location is required";
-          isValid = false;
-        } else if (field.value.trim().length < 5) {
-          errorMessage = "Please provide a more detailed location";
-          isValid = false;
-        }
-        break;
-      
-      case "ephotographer":
-        if (!field.value) {
-          errorMessage = "Please select a photographer";
-          isValid = false;
-        }
-        break;
-      
-      case "epackageType":
-        if (!field.value) {
-          errorMessage = "Please select a package";
-          isValid = false;
-        }
-        break;
-    }
+          break;
 
-    if (isValid) {
-      field.classList.remove("error");
-      field.classList.add("success");
-      errorSpan.classList.remove("show");
-      errorSpan.textContent = "";
-    } else {
-      field.classList.add("error");
-      field.classList.remove("success");
-      errorSpan.textContent = errorMessage;
-      errorSpan.classList.add("show");
-    }
+        case "etype":
+          if (!field.value.trim()) {
+            errorMessage = "Event type is required";
+            isValid = false;
+          } else if (field.value.trim().length < 3) {
+            errorMessage = "Event type must be at least 3 characters";
+            isValid = false;
+          }
+          break;
 
-    return isValid;
-  }
+        case "edate":
+          if (!field.value) {
+            errorMessage = "Event date is required";
+            isValid = false;
+          } else {
+            const selectedDate = new Date(field.value);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            if (selectedDate < today) {
+              errorMessage = "Event date cannot be in the past";
+              isValid = false;
+            }
+          }
+          break;
 
-  function validateTicketField(fieldId) {
-    const field = document.getElementById(fieldId);
-    const errorSpan = document.getElementById(fieldId + "-error");
-    let isValid = true;
-    let errorMessage = "";
+        case "etime":
+          if (!field.value) {
+            errorMessage = "Event time is required";
+            isValid = false;
+          }
+          break;
 
-    switch(fieldId) {
-      case "tphone":
-        const phonePattern = /^[\d\s\-\+\(\)]{8,}$/;
-        if (!field.value.trim()) {
-          errorMessage = "Phone number is required";
-          isValid = false;
-        } else if (!phonePattern.test(field.value)) {
-          errorMessage = "Please enter a valid phone number (minimum 8 digits)";
-          isValid = false;
-        }
-        break;
-      
-      case "tsubject":
-        if (!field.value.trim()) {
-          errorMessage = "Subject is required";
-          isValid = false;
-        } else if (field.value.trim().length < 5) {
-          errorMessage = "Subject must be at least 5 characters";
-          isValid = false;
-        } else if (field.value.trim().length > 100) {
-          errorMessage = "Subject must be less than 100 characters";
-          isValid = false;
-        }
-        break;
-      
-      case "tmessage":
-        if (!field.value.trim()) {
-          errorMessage = "Message is required";
-          isValid = false;
-        } else if (field.value.trim().length < 10) {
-          errorMessage = "Please provide more details (minimum 10 characters)";
-          isValid = false;
-        } else if (field.value.trim().length > 1000) {
-          errorMessage = "Message must be less than 1000 characters";
-          isValid = false;
-        }
-        break;
-    }
+        case "elocation":
+          if (!field.value.trim()) {
+            errorMessage = "Event location is required";
+            isValid = false;
+          } else if (field.value.trim().length < 5) {
+            errorMessage = "Please provide a more detailed location";
+            isValid = false;
+          }
+          break;
 
-    if (isValid) {
-      field.classList.remove("error");
-      field.classList.add("success");
-      errorSpan.classList.remove("show");
-      errorSpan.textContent = "";
-    } else {
-      field.classList.add("error");
-      field.classList.remove("success");
-      errorSpan.textContent = errorMessage;
-      errorSpan.classList.add("show");
-    }
+        case "ephotographer":
+          if (!field.value) {
+            errorMessage = "Please select a photographer";
+            isValid = false;
+          }
+          break;
 
-    return isValid;
-  }
-
-  function validateEventForm() {
-    const fields = ["ephone", "etype", "edate", "etime", "elocation", "ephotographer", "epackageType"];
-    let isValid = true;
-    
-    fields.forEach(field => {
-      if (!validateEventField(field)) {
-        isValid = false;
+        case "epackageType":
+          if (!field.value) {
+            errorMessage = "Please select a package";
+            isValid = false;
+          }
+          break;
       }
-    });
 
-    return isValid;
-  }
-
-  function validateTicketForm() {
-    const fields = ["tphone", "tsubject", "tmessage"];
-    let isValid = true;
-    
-    fields.forEach(field => {
-      if (!validateTicketField(field)) {
-        isValid = false;
+      if (isValid) {
+        field.classList.remove("error");
+        field.classList.add("success");
+        errorSpan.classList.remove("show");
+        errorSpan.textContent = "";
+      } else {
+        field.classList.add("error");
+        field.classList.remove("success");
+        errorSpan.textContent = errorMessage;
+        errorSpan.classList.add("show");
       }
-    });
 
-    return isValid;
-  }
+      return isValid;
+    }
 
-  function clearFormErrors(formId) {
-    const form = document.getElementById(formId);
-    const inputs = form.querySelectorAll("input, select, textarea");
-    inputs.forEach(input => {
-      input.classList.remove("error", "success");
-    });
-    const errorSpans = form.querySelectorAll(".error-message");
-    errorSpans.forEach(span => {
-      span.classList.remove("show");
-      span.textContent = "";
-    });
-  }
-</script>
+    function validateTicketField(fieldId) {
+      const field = document.getElementById(fieldId);
+      const errorSpan = document.getElementById(fieldId + "-error");
+      let isValid = true;
+      let errorMessage = "";
+
+      switch (fieldId) {
+        case "tphone":
+          const phonePattern = /^[\d\s\-\+\(\)]{8,}$/;
+          if (!field.value.trim()) {
+            errorMessage = "Phone number is required";
+            isValid = false;
+          } else if (!phonePattern.test(field.value)) {
+            errorMessage = "Please enter a valid phone number (minimum 8 digits)";
+            isValid = false;
+          }
+          break;
+
+        case "tsubject":
+          if (!field.value.trim()) {
+            errorMessage = "Subject is required";
+            isValid = false;
+          } else if (field.value.trim().length < 5) {
+            errorMessage = "Subject must be at least 5 characters";
+            isValid = false;
+          } else if (field.value.trim().length > 100) {
+            errorMessage = "Subject must be less than 100 characters";
+            isValid = false;
+          }
+          break;
+
+        case "tmessage":
+          if (!field.value.trim()) {
+            errorMessage = "Message is required";
+            isValid = false;
+          } else if (field.value.trim().length < 10) {
+            errorMessage = "Please provide more details (minimum 10 characters)";
+            isValid = false;
+          } else if (field.value.trim().length > 1000) {
+            errorMessage = "Message must be less than 1000 characters";
+            isValid = false;
+          }
+          break;
+      }
+
+      if (isValid) {
+        field.classList.remove("error");
+        field.classList.add("success");
+        errorSpan.classList.remove("show");
+        errorSpan.textContent = "";
+      } else {
+        field.classList.add("error");
+        field.classList.remove("success");
+        errorSpan.textContent = errorMessage;
+        errorSpan.classList.add("show");
+      }
+
+      return isValid;
+    }
+
+    function validateEventForm() {
+      const fields = ["ephone", "etype", "edate", "etime", "elocation", "ephotographer", "epackageType"];
+      let isValid = true;
+
+      fields.forEach(field => {
+        if (!validateEventField(field)) {
+          isValid = false;
+        }
+      });
+
+      return isValid;
+    }
+
+    function validateTicketForm() {
+      const fields = ["tphone", "tsubject", "tmessage"];
+      let isValid = true;
+
+      fields.forEach(field => {
+        if (!validateTicketField(field)) {
+          isValid = false;
+        }
+      });
+
+      return isValid;
+    }
+
+    function clearFormErrors(formId) {
+      const form = document.getElementById(formId);
+      const inputs = form.querySelectorAll("input, select, textarea");
+      inputs.forEach(input => {
+        input.classList.remove("error", "success");
+      });
+      const errorSpans = form.querySelectorAll(".error-message");
+      errorSpans.forEach(span => {
+        span.classList.remove("show");
+        span.textContent = "";
+      });
+    }
+  </script>
 </body>
+
 </html>

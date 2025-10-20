@@ -1469,99 +1469,66 @@
             });
 
             // ---------------- Payments CRUD ----------------
-
             async function loadPayments() {
                 try {
                     const response = await fetch(PAYMENT_API_URL);
                     if (!response.ok) throw new Error('Failed to load payments');
 
-                    allPayments = await response.json(); // Store all payments in global variable
-                    displayFilteredPayments(allPayments); // Display all payments initially
+                    const payments = await response.json();
+                    const tbody = document.getElementById("paymentsTableBody");
+                    tbody.innerHTML = "";
+                    payments.forEach(payment => {
+                        if (!payment) return; // Skip if payment is null
+
+                        let statusBadgeClass = '';
+                        const status = (payment.status || 'pending').toLowerCase();
+                        switch (status) {
+                            case 'approved':
+                                statusBadgeClass = 'bg-success';
+                                break;
+                            case 'rejected':
+                                statusBadgeClass = 'bg-danger';
+                                break;
+                            default:
+                                statusBadgeClass = 'bg-warning';
+                        }
+
+                        // Safely escape all values and provide defaults
+                        const paymentId = payment.payemntid || 'N/A';
+                        const name = escapeHtml(payment.name || 'N/A');
+                        const email = escapeHtml(payment.email || 'N/A');
+                        const cardNumber = payment.cardNumber ? formatCardNumber(payment.cardNumber) : 'N/A';
+                        const expiryDate = payment.expiryDate ? formatDate(payment.expiryDate) : 'N/A';
+                        const method = escapeHtml(payment.method || 'N/A');
+                        const price = escapeHtml(payment.price || 'N/A');
+                        const type = escapeHtml(payment.type || 'N/A');
+                        const statusText = escapeHtml(payment.status || 'Pending');
+
+                        tbody.innerHTML += `
+                            <tr data-payment-id="${paymentId}">
+                               <td>${paymentId}</td>
+                               <td>${name}</td>
+                               <td>${email}</td>
+                               <td>${cardNumber}</td>
+                               <td>${expiryDate}</td>
+                               <td><span class="badge bg-primary">${method}</span></td>
+                               <td>${price}</td>
+                               <td><span class="badge bg-secondary">${type}</span></td>
+                               <td><span class="badge ${statusBadgeClass}">${statusText}</span></td>
+                               <td>
+                                 <button class="btn btn-primary btn-sm" onclick="editPayment('${paymentId}','${status}')">Update Status</button>
+                                 <button class="btn btn-danger btn-sm" onclick="deletePayment('${paymentId}')">Delete</button>
+                               </td>
+                           </tr>
+                   `;
+                    });
+
+
                 } catch (error) {
                     console.error('Error loading payments:', error);
                     showAlert('Failed to load payments: ' + error.message, 'error');
                 }
             }
-            function displayFilteredPayments(payments) {
-                const tbody = document.getElementById("paymentsTableBody");
-                tbody.innerHTML = "";
-
-                payments.forEach(payment => {
-                    if (!payment) return; // Skip if payment is null
-
-                    let statusBadgeClass = '';
-                    const status = (payment.status || 'pending').toLowerCase();
-                    switch (status) {
-                        case 'approved':
-                            statusBadgeClass = 'bg-success';
-                            break;
-                        case 'rejected':
-                            statusBadgeClass = 'bg-danger';
-                            break;
-                        default:
-                            statusBadgeClass = 'bg-warning';
-                    }
-
-                    const paymentId = payment.payemntid || 'N/A';
-                    const name = escapeHtml(payment.name || 'N/A');
-                    const email = escapeHtml(payment.email || 'N/A');
-                    const cardNumber = payment.cardNumber ? formatCardNumber(payment.cardNumber) : 'N/A';
-                    const expiryDate = payment.expiryDate ? formatDate(payment.expiryDate) : 'N/A';
-                    const method = escapeHtml(payment.method || 'N/A');
-                    const price = escapeHtml(payment.price || 'N/A');
-                    const type = escapeHtml(payment.type || 'N/A');
-                    const statusText = escapeHtml(payment.status || 'Pending');
-
-                    tbody.innerHTML += `
-                       <tr data-payment-id="${paymentId}">
-                           <td>${paymentId}</td>
-                           <td>${name}</td>
-                           <td>${email}</td>
-                           <td>${cardNumber}</td>
-                           <td>${expiryDate}</td>
-                           <td><span class="badge bg-primary">${method}</span></td>
-                           <td>${price}</td>
-                           <td><span class="badge bg-secondary">${type}</span></td>
-                           <td><span class="badge ${statusBadgeClass}">${statusText}</span></td>
-                           <td>
-                             <button class="btn btn-primary btn-sm" onclick="editPayment('${paymentId}','${status}')">Update Status</button>
-                             <button class="btn btn-danger btn-sm" onclick="deletePayment('${paymentId}')">Delete</button>
-                            </td>
-                       </tr>
-                    `;
-                });
-            }
-            document.getElementById("paymentSearch").addEventListener("input", function () {
-                const searchTerm = this.value.toLowerCase();
-                const searchCriteria = document.getElementById("paymentSearchCriteria").value;
-
-                if (!searchTerm) {
-                    displayFilteredPayments(allPayments);
-                    return;
-                }
-
-                const filteredPayments = allPayments.filter(payment => {
-                    if (!payment) return false;
-
-                    const value = String(payment[searchCriteria] || '').toLowerCase();
-                    return value.includes(searchTerm);
-                });
-
-                displayFilteredPayments(filteredPayments);
-            });
-
-            function clearPaymentSearch() {
-                document.getElementById("paymentSearch").value = "";
-                displayFilteredPayments(allPayments);
-            }
-
-            document.getElementById("paymentSearchCriteria").addEventListener("change", function () {
-                const searchTerm = document.getElementById("paymentSearch").value;
-                if (searchTerm) {
-                    document.getElementById("paymentSearch").dispatchEvent(new Event('input'));
-                }
-            });
-
 
             function openPaymentModal() {
                 document.getElementById("paymentModal").style.display = "block";
