@@ -463,7 +463,7 @@
         if (res.ok) {
           const result = await res.json();
           document.getElementById("uploadStatus").textContent =
-            "✅ Upload successful: " + result.fileName;
+            " Upload successful: " + result.fileName;
           loadUploadedFiles();
         } else {
           document.getElementById("uploadStatus").textContent = "❌ Upload failed.";
@@ -505,7 +505,7 @@
       } catch (err) {
         console.error(err);
         document.getElementById("fileTableBody").innerHTML =
-          "<tr><td colspan='5'>⚠️ Error loading files.</td></tr>";
+          "<tr><td colspan='5'> Error loading files.</td></tr>";
       }
     }
 
@@ -515,14 +515,14 @@
       try {
         const res = await fetch(`${ZIP_API_URL}/delete/${id}`, { method: "DELETE" });
         if (res.ok) {
-          alert("✅ File deleted successfully!");
+          alert(" File deleted successfully!");
           loadUploadedFiles();
         } else {
-          alert("❌ Failed to delete file.");
+          alert(" Failed to delete file.");
         }
       } catch (err) {
         console.error(err);
-        alert("⚠️ Error deleting file.");
+        alert(" Error deleting file.");
       }
     }
 
@@ -541,14 +541,14 @@
             body: formData
           });
           if (res.ok) {
-            alert("✅ File updated successfully!");
+            alert(" File updated successfully!");
             loadUploadedFiles();
           } else {
-            alert("❌ Update failed.");
+            alert(" Update failed.");
           }
         } catch (err) {
           console.error(err);
-          alert("⚠️ Error updating file.");
+          alert(" Error updating file.");
         }
       };
       fileInput.click();
