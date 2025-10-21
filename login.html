@@ -230,13 +230,13 @@
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
 
-      // ✅ Hardcoded Admin
+      //  Hardcoded Admin
       if (email === "admin@example.com" && password === "admin123") {
         window.location.href = "admin-dashboard.html";
         return;
       }
 
-      // ✅ Photographer Login
+      //  Photographer Login
       try {
         const resPhotographer = await fetch("http://localhost:9000/api/photographers");
         if (resPhotographer.ok) {
@@ -253,7 +253,7 @@
         console.error("Photographer login error:", err);
       }
 
-      // ✅ Customer Login
+      // Customer Login
       try {
         const response = await fetch("http://localhost:9000/api/users/login", {
           method: "POST",

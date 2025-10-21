@@ -733,11 +733,11 @@
       }
     }
 
-    // Replace the existing profile form event listener with this corrected version
+   
     document.getElementById("profileForm").addEventListener("submit", async function (e) {
       e.preventDefault();
 
-      // Create profileData object matching the backend User entity structure
+      
       const profileData = {
         uid: loggedInUser.uid,
         uname: document.getElementById("pname").value.trim(),
@@ -753,7 +753,7 @@
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
-            // Add any auth headers if required
+            
           },
           body: JSON.stringify(profileData)
         });

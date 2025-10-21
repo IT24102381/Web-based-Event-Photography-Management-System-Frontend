@@ -336,8 +336,8 @@
           doc.roundedRect(20, 135, 170, 15, 3, 3, "F");
           doc.setFontSize(14);
           doc.setTextColor(0, 0, 0);
-            const paidAmount = (typeof paymentData.price === "number" && !isNaN(paymentData.price)) ? paymentData.price.toFixed(2) : "0.00";
-            doc.text(` Amount Paid: $${paidAmount}`, 25, 145);
+          const paidAmount = (typeof paymentData.price === "number" && !isNaN(paymentData.price)) ? paymentData.price.toFixed(2) : "0.00";
+          doc.text(` Amount Paid: $${paidAmount}`, 25, 145);
 
           // Footer
           doc.setDrawColor(200);
